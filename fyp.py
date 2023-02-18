@@ -21,24 +21,27 @@ def get_db():
             area = line
 
 
-def check_vuln():
-    if stated_device.get() == "Pi" and stated_area.get() == "Kitchen":
-        print('Vuln')
+def check_vulnerable():
+    if stated_device.get() == "Sensor" and stated_area.get() == "Kitchen":
+        print('Vulnerable')
+    elif stated_device.get() == "Camera" and stated_area.get() == "Bedroom":
+        print('Vulnerable')
     else:
-        print('Not vuln')
+        print('Not vulnerable')
+
 
 
 get_db()
 # Create window
 window = tk.Tk()
-window.geometry('500x500')
-window.title("")
+window.geometry("500x500")
+window.title("IoT vulnerability scanner")
 
 # State devices, currently as array
 # devices = ["Pi", "Camera", "Router", "Sensor"]
 
 # state where devices is placed
-#area = ["Kitchen", "Living Room"]
+# area = ["Kitchen", "Living Room"]
 
 # set selected devices to device zero and make it a string
 stated_device = tk.StringVar(window)
@@ -50,13 +53,13 @@ stated_area.set(area[0])
 # create buttons
 device_input = tk.OptionMenu(window, stated_device, *devices)
 area_input = tk.OptionMenu(window, stated_area, *area)
-save_button = tk.Button(window, text="Check vuln", command=check_vuln(), width=20)
+save_button = tk.Button(window, text="Check vulnerable", command=lambda: check_vulnerable(), width=20)
 
 # put buttons in window
-tk.Label(window, text="input devices: ", width=10).pack(pady=1, padx=1)
-device_input.pack(pady=10, padx=10)
-tk.Label(window, text="input area: ", width=10).pack(pady=1, padx=1)
-area_input.pack(pady=10, padx=10)
-save_button.pack(pady=10, padx=10)
+tk.Label(window, text="input devices: ", width=10).grid(row=0, column=0)
+device_input.grid(row=0, column=1)
+tk.Label(window, text="input area: ", width=10).grid(row=1, column=0)
+area_input.grid(row=1, column=1)
+save_button.grid(row=2, column=0)
 
 window.mainloop()
