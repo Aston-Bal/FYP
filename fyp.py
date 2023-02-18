@@ -23,12 +23,11 @@ def get_db():
 
 def check_vulnerable():
     if stated_device.get() == "Sensor" and stated_area.get() == "Kitchen":
-        print('Vulnerable')
+        tk.Label(window, text="Vulnerable", width=30).grid(row=3, column=0, columnspan=2, padx=5, pady=5)
     elif stated_device.get() == "Camera" and stated_area.get() == "Bedroom":
-        print('Vulnerable')
+        tk.Label(window, text="Vulnerable", width=30).grid(row=3, column=0, columnspan=2, padx=5, pady=5)
     else:
-        print('Not vulnerable')
-
+        tk.Label(window, text="Not Vulnerable", width=30).grid(row=3, column=0, columnspan=2, padx=5, pady=5)
 
 
 get_db()
@@ -53,13 +52,14 @@ stated_area.set(area[0])
 # create buttons
 device_input = tk.OptionMenu(window, stated_device, *devices)
 area_input = tk.OptionMenu(window, stated_area, *area)
-save_button = tk.Button(window, text="Check vulnerable", command=lambda: check_vulnerable(), width=20)
+save_button = tk.Button(window, text="Check vulnerable", command=lambda: check_vulnerable(), width=30)
 
 # put buttons in window
-tk.Label(window, text="input devices: ", width=10).grid(row=0, column=0)
-device_input.grid(row=0, column=1)
-tk.Label(window, text="input area: ", width=10).grid(row=1, column=0)
-area_input.grid(row=1, column=1)
-save_button.grid(row=2, column=0)
+tk.Label(window, text="Input devices: ", width=10).grid(row=0, column=0, padx=5, pady=5)
+device_input.grid(row=0, column=1, padx=5, pady=5)
+tk.Label(window, text="Input area: ", width=10).grid(row=1, column=0, padx=5, pady=5)
+area_input.grid(row=1, column=1, padx=5, pady=5)
+save_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
+
 
 window.mainloop()
