@@ -1,9 +1,20 @@
 import tkinter as tk
 import csv
+import requests
+import json
+import os
 
 
-def get_db():
-    # open csv
+def initialize():
+    url = "https://www.variotdbs.pl/api/vuln/VAR-202303-0357/?jsonld=false"
+    # headers = {"Authorization: Token bdba526d34cb3ee6e3ca5c1673240e35c0c1a0b2"}
+    response = requests.get(url).json()
+    print(json.dumps(response, sort_keys=True, indent=4))
+    # y = json.loads(response.json()) #Confusion
+    with open('vulnerability.json', mode='w') as file:
+        json.dump(response, file, ensure_ascii=False, indent=4)
+    # open the list of devices in csv
+    # if not os.path.exists("devices.csv"):
     with open('devices.csv', mode='r') as file:
         # read csv
         csvfile = csv.reader(file)
@@ -11,7 +22,7 @@ def get_db():
         for line in csvfile:
             global devices
             devices = line
-
+    # open the list of area's in csv
     with open('area.csv', mode='r') as file:
         # read csv
         csvfile = csv.reader(file)
@@ -30,7 +41,7 @@ def check_vulnerable():
         tk.Label(window, text="Not Vulnerable", width=30).grid(row=3, column=0, columnspan=2, padx=5, pady=5)
 
 
-get_db()
+initialize()
 # Create window
 window = tk.Tk()
 window.geometry("500x500")
@@ -60,6 +71,5 @@ device_input.grid(row=0, column=1, padx=5, pady=5)
 tk.Label(window, text="Input area: ", width=10).grid(row=1, column=0, padx=5, pady=5)
 area_input.grid(row=1, column=1, padx=5, pady=5)
 save_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
-
 
 window.mainloop()
