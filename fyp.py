@@ -2,19 +2,33 @@ import tkinter as tk
 import csv
 import requests
 import json
+import pandas as pd
 import os
 
 
 def initialize():
-    url = "https://www.variotdbs.pl/api/vuln/VAR-202303-0357/?jsonld=false"
-    # headers = {"Authorization: Token bdba526d34cb3ee6e3ca5c1673240e35c0c1a0b2"}
-    response = requests.get(url).json()
-    print(json.dumps(response, sort_keys=True, indent=4))
-    # y = json.loads(response.json()) #Confusion
-    with open('vulnerability.json', mode='w') as file:
-        json.dump(response, file, ensure_ascii=False, indent=4)
-    # open the list of devices in csv
-    # if not os.path.exists("devices.csv"):
+    url = "https://www.variotdbs.pl/api//vulns/?jsonld=false&since=2022-08-01&before=2099-01-01"  # Since Sep 2022
+    connect_failure = False
+    # headers = {"curl -X GET 'https://www.variotdbs.pl/api/vulns/' -H 'Authorization: Token bdba526d34cb3ee6e3ca5c1673240e35c0c1a0b2'"}
+    try:
+        response = requests.get(url).json()
+    except requests.exceptions.RequestException as e:
+        connect_failure = True
+        print("API connection failed!")
+
+    if not connect_failure:
+        with open('vulnerability.json', mode='w', encoding="UTF-8") as file:
+            json.dump(response, file, ensure_ascii=False, indent=4)
+
+    if not os.path.exists("vulnerability.json") and connect_failure:
+        raise SystemExit("Cannot connect to API and no local copy available, exiting!")
+    dataframe = pd.read_json("vulnerability.json")
+    print(dataframe.loc[00]["results"]["affected_products"]["data"][00]["model"])
+   # print(dataframe.head(5))
+    # df = str(response_dataframe.loc["data", "affected_products"]).replace("\'", "\"")  # seems wrong
+    # obj = json.loads(df)
+    #    print(obj[00]["vendor"])
+    # print(response["affected_products"]["data"][00])
     with open('devices.csv', mode='r') as file:
         # read csv
         csvfile = csv.reader(file)
