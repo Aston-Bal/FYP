@@ -1,0 +1,212 @@
+{
+  "vendor": [
+    {
+      "Amazon (Ring)": [
+        {
+          "model": "Echo Dot (5th Generation)",
+          "type": "Smart Assistant",
+          "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        },
+        {
+          "model": "Echo Dot (4th Generation)",
+          "type": "Smart Assistant",
+           "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        },
+        {
+          "model": "Echo Dot (3rd Generation)",
+          "type": "Smart Assistant",
+           "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        }
+        ,{
+          "model": "Echo Studio",
+          "type": "Smart Assistant",
+           "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        },
+        {
+          "model": "Echo Show 10",
+          "type": "Smart Assistant",
+           "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        },
+          {
+          "model": "Ring Outdoor Camera",
+          "type": "Smart Camera",
+          "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Nest (Google)": [
+        {
+          "model": "Nest Mini (2nd Generation)",
+          "type": "Smart Assistant",
+          "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        },
+        {
+          "model": "Nest Cam (outdoor or indoor, battery)\n",
+          "type": "Smart Camera",
+           "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        },
+         {
+          "model": "Nest Cam with Floodlight",
+          "type": "Smart Camera",
+           "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        },
+          {
+          "model": "Nest Cam (indoor, wired)",
+          "type": "Smart Camera",
+           "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Nanoleaf": [
+        {
+          "model": "Sense+",
+          "type": "Smart Lightswitch",
+          "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        },
+        {
+          "model": "Shapes",
+          "type": "Smart Light",
+           "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        },
+        {
+          "model": "Nanoleaf 4D",
+          "type": "Smart Light",
+           "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        },
+         {
+          "model": "Canvas",
+          "type": "Smart Light",
+           "vulnerability": [
+            {
+              "name": "CVE 232311321",
+              "description": "desc"
+            },
+            {
+              "name": "CVE adasd",
+              "description": "desc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
