@@ -6,28 +6,34 @@ import os
 
 
 class Area:
-    def __init__(self, name, menu, device):
+    def __init__(self, name, menu, number_of_devices):
+        self.devices = []
         self.name = name
         self.menu = menu
-        self.no_devices = device
+        self.number_of_devices = number_of_devices
+
+    def add_device(self, devices):
+        self.devices.append(devices)
 
 
 class Device:
-    def __init__(self, name, menu, type, vulnerability):
+    def __init__(self, name, tag, vulnerability: list):
         self.name = name
-        self.menu = menu
-        self.type = type
+        self.type = tag
         self.vulnerability = vulnerability
 
+    def __str__(self):
+        return self.name
 
-no_buttons: int = 0
-buttons = []
-devices = []
+
+number_of_buttons: int = 0
+buttons_list = []
+devices_list = []
 global database
 
 
 def initialize():
-    url = "https://www.variotdbs.pl/api//vulns/?jsonld=false&since=2022-08-01&before=2099-01-01"  # Since Sep 2022
+    """" url = "https://www.variotdbs.pl/api//vulns/?jsonld=false&since=2022-08-01&before=2099-01-01"  # Since Sep 2022
     # headers = {"curl -X GET 'https://www.variotdbs.pl/api/vulns/' -H 'Authorization: Token bdba526d34cb3ee6e3ca5c1673240e35c0c1a0b2'"}
     try:
         response = requests.get(url).json()
@@ -37,28 +43,28 @@ def initialize():
         print("API connection failed!")
         if not os.path.exists("vulnerability.json"):
             raise SystemExit("Cannot connect to API and no local copy available, exiting!")
-
+    """
     with open('database.json', mode='r', encoding="UTF-8") as file:
         global database
         database = json.load(file)
-        vendors = database["vendor"]
-        vendors = vendors[0]["Amazon (Ring)"]
-        i: int = 0
-        while i != len(vendors):
-            devices.append(vendors[i]["model"])
-            print(vendors[i]["model"])
-            i = i + 1
-
-
+        database = database["vendors"]
+        for vendors in database:
+            current_vendor = list(vendors.values())[0]
+            for devices in current_vendor:
+                new_device = Device(devices["model"], devices["tag"], devices["vulnerability"])
+                devices_list.append(new_device)
 
 
 def check_vulnerable():
-    if stated_device.get() == "Sensor" and stated_area.get() == "Kitchen":
-        tk.Label(window, text="Vulnerable", width=30).grid(row=3, column=0, columnspan=2, padx=5, pady=5)
-    elif stated_device.get() == "Camera" and stated_area.get() == "Bedroom":
-        tk.Label(window, text="Vulnerable", width=30).grid(row=3, column=0, columnspan=2, padx=5, pady=5)
-    else:
-        tk.Label(window, text="Not Vulnerable", width=30).grid(row=3, column=0, columnspan=2, padx=5, pady=5)
+    for area in buttons_list:
+        for area_devices in area.devices:
+            for devices in devices_list:
+                if area_devices.get() == devices.name:
+                    vulnerabilities_list = devices.vulnerability
+                    for vulnerabilities in vulnerabilities_list:
+                        print(devices.vulnerability)
+
+
 
 
 def add_new_area():
@@ -66,25 +72,26 @@ def add_new_area():
     area.set(location[0])  # Required to set default value
     area_optionmenu = tk.OptionMenu(window, area, *location)
     current_grid_size = window.grid_size()
-    print(window.grid_size())
-    tk.Label(window, text="Input area: ", width=10).grid(row=current_grid_size[1], column=0, padx=5, pady=5)
+    tk.Label(window, text="Input area: ").grid(row=current_grid_size[1], column=0, padx=5, pady=5)
     area_optionmenu.grid(row=current_grid_size[1], column=1, padx=5, pady=5)
-    global no_buttons
-    area = Area(no_buttons, area_optionmenu, 0)
-    buttons.append(area)
-    no_buttons = no_buttons + 1
-    add_devices = tk.Button(window, text="Add device", command=lambda: add_new_device(area))
+    global number_of_buttons
+    area = Area(number_of_buttons, area, 0)
+    buttons_list.append(area)
+    number_of_buttons = number_of_buttons + 1
+    add_devices = tk.Button(window, text="Add device",
+                            command=lambda: add_new_device(area, (current_grid_size[1]), current_grid_size[0]))
     add_devices.grid(row=(current_grid_size[1] + 1), column=1, padx=5, pady=5)
-    tk.Label(window, text="Input devices: ", bd=5).grid(row=(current_grid_size[1] + 1), column=0, padx=5, pady=5)
+    tk.Label(window, text="Input devices: ").grid(row=(current_grid_size[1] + 1), column=0, padx=5, pady=5)
 
 
-def add_new_device(area: Area):
+def add_new_device(area: Area, row: int, col: int):
     device = tk.StringVar(window)
-    device.set(devices[0])
-    device_menu = tk.OptionMenu(window, device, *devices)
-    grid_location = area.menu.grid_info()
-    area.no_devices = area.no_devices + 1
-    device_menu.grid(row=(grid_location["row"] + 1), column=(grid_location["column"] + area.no_devices), padx=5, pady=5)
+    device.set(devices_list[0])
+    device_menu = tk.OptionMenu(window, device, *devices_list)
+    area.number_of_devices = area.number_of_devices + 1
+    area.add_device(device)
+    device_menu.grid(row=(row + 1), column=(col + area.number_of_devices), padx=5,
+                     pady=5)
 
 
 def toolbar():
@@ -113,6 +120,6 @@ location = ["Kitchen", "Living Room", "Entrance  Hall", "Dining Room", "Bedroom"
 
 calculate_vulnerability = tk.Button(window, text="Check vulnerable", command=lambda: check_vulnerable(), width=30)
 temp_button = tk.Button(window, text="Add new area", command=lambda: add_new_area(), width=30)
-temp_button.grid(row=0, column=0, columnspan=4, padx=5, pady=5)
-calculate_vulnerability.grid(row=1, column=0, columnspan=4, padx=5, pady=5)
+temp_button.grid(row=0, column=0, columnspan=5, padx=5, pady=5)
+calculate_vulnerability.grid(row=1, column=0, columnspan=5, padx=5, pady=5)
 window.mainloop()

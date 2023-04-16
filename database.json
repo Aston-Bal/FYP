@@ -1,10 +1,10 @@
 {
-  "vendor": [
+  "vendors": [
     {
-      "Amazon (Ring)": [
+      "Amazon (Ring)":[
         {
           "model": "Echo Dot (5th Generation)",
-          "type": "Smart Assistant",
+          "tag": "Smart Assistant",
           "vulnerability": [
             {
               "name": "CVE 232311321",
@@ -18,7 +18,7 @@
         },
         {
           "model": "Echo Dot (4th Generation)",
-          "type": "Smart Assistant",
+          "tag": "Smart Assistant",
            "vulnerability": [
             {
               "name": "CVE 232311321",
@@ -32,7 +32,7 @@
         },
         {
           "model": "Echo Dot (3rd Generation)",
-          "type": "Smart Assistant",
+          "tag": "Smart Assistant",
            "vulnerability": [
             {
               "name": "CVE 232311321",
@@ -46,7 +46,7 @@
         }
         ,{
           "model": "Echo Studio",
-          "type": "Smart Assistant",
+          "tag": "Smart Assistant",
            "vulnerability": [
             {
               "name": "CVE 232311321",
@@ -60,7 +60,7 @@
         },
         {
           "model": "Echo Show 10",
-          "type": "Smart Assistant",
+          "tag": "Smart Assistant",
            "vulnerability": [
             {
               "name": "CVE 232311321",
@@ -74,7 +74,7 @@
         },
           {
           "model": "Ring Outdoor Camera",
-          "type": "Smart Camera",
+          "tag": "Smart Camera",
           "vulnerability": [
             {
               "name": "CVE 232311321",
@@ -92,7 +92,7 @@
       "Nest (Google)": [
         {
           "model": "Nest Mini (2nd Generation)",
-          "type": "Smart Assistant",
+          "tag": "Smart Assistant",
           "vulnerability": [
             {
               "name": "CVE 232311321",
@@ -106,7 +106,7 @@
         },
         {
           "model": "Nest Cam (outdoor or indoor, battery)\n",
-          "type": "Smart Camera",
+          "tag": "Smart Camera",
            "vulnerability": [
             {
               "name": "CVE 232311321",
@@ -120,7 +120,7 @@
         },
          {
           "model": "Nest Cam with Floodlight",
-          "type": "Smart Camera",
+          "tag": "Smart Camera",
            "vulnerability": [
             {
               "name": "CVE 232311321",
@@ -134,7 +134,7 @@
         },
           {
           "model": "Nest Cam (indoor, wired)",
-          "type": "Smart Camera",
+          "tag": "Smart Camera",
            "vulnerability": [
             {
               "name": "CVE 232311321",
@@ -152,7 +152,7 @@
       "Nanoleaf": [
         {
           "model": "Sense+",
-          "type": "Smart Lightswitch",
+          "tag": "Smart Lightswitch",
           "vulnerability": [
             {
               "name": "CVE 232311321",
@@ -166,7 +166,7 @@
         },
         {
           "model": "Shapes",
-          "type": "Smart Light",
+          "tag": "Smart Light",
            "vulnerability": [
             {
               "name": "CVE 232311321",
@@ -180,7 +180,7 @@
         },
         {
           "model": "Nanoleaf 4D",
-          "type": "Smart Light",
+          "tag": "Smart Light",
            "vulnerability": [
             {
               "name": "CVE 232311321",
@@ -194,7 +194,7 @@
         },
          {
           "model": "Canvas",
-          "type": "Smart Light",
+          "tag": "Smart Light",
            "vulnerability": [
             {
               "name": "CVE 232311321",
