@@ -22,6 +22,7 @@ class Device:
 
 no_buttons: int = 0
 buttons = []
+devices = []
 global database
 
 
@@ -40,6 +41,15 @@ def initialize():
     with open('database.json', mode='r', encoding="UTF-8") as file:
         global database
         database = json.load(file)
+        vendors = database["vendor"]
+        vendors = vendors[0]["Amazon (Ring)"]
+        i: int = 0
+        while i != len(vendors):
+            devices.append(vendors[i]["model"])
+            print(vendors[i]["model"])
+            i = i + 1
+
+
 
 
 def check_vulnerable():
@@ -97,15 +107,11 @@ window = tk.Tk()
 toolbar()
 window.geometry("1000x500")
 window.title("IoT vulnerability scanner")
-# State devices, currently as array
-devices = ["Pi", "Camera", "Router", "Sensor"]
 # state where devices is placed
-location = ["Kitchen", "Living Room"]
+location = ["Kitchen", "Living Room", "Entrance  Hall", "Dining Room", "Bedroom", "Guest Room", "Kid's Room", "Office",
+            "Loft (Attic)", "Basement", "Garage"]
 
-# create buttons
 calculate_vulnerability = tk.Button(window, text="Check vulnerable", command=lambda: check_vulnerable(), width=30)
-
-# put buttons in window
 temp_button = tk.Button(window, text="Add new area", command=lambda: add_new_area(), width=30)
 temp_button.grid(row=0, column=0, columnspan=4, padx=5, pady=5)
 calculate_vulnerability.grid(row=1, column=0, columnspan=4, padx=5, pady=5)
