@@ -4,29 +4,16 @@
       "Amazon (Ring)":[
         {
           "model": "Echo Dot (5th Generation)",
-          "tag": "Smart Assistant",
-          "vulnerability": [
-            {
-              "name": "CVE 232311321",
-              "description": "desc"
-            },
-            {
-              "name": "CVE adasd",
-              "description": "desc"
-            }
-          ]
+          "tag": "Smart Assistant"
+
         },
         {
           "model": "Echo Dot (4th Generation)",
           "tag": "Smart Assistant",
            "vulnerability": [
             {
-              "name": "CVE 232311321",
-              "description": "desc"
-            },
-            {
-              "name": "CVE adasd",
-              "description": "desc"
+              "name": "Amazon Echo Session fixation vulnerability in devices",
+              "description": "the reprompt feature in Amazon Echo devices could be misused by a custom Alexa skill. The reprompt feature is designed so that if Alexa does not receive an input within 8 seconds, the device can speak a reprompt, then wait an additional 8 seconds for input; if the user still does not respond, the microphone is then turned off. The vulnerability involves empty output-speech reprompts, custom wildcard (\"gibberish\") input slots, and logging of detected speech. If a maliciously designed skill is installed, an attacker could obtain transcripts of speech not intended for Alexa to process, but simply spoken within the device's hearing range. "
             }
           ]
         },
@@ -35,12 +22,8 @@
           "tag": "Smart Assistant",
            "vulnerability": [
             {
-              "name": "CVE 232311321",
-              "description": "desc"
-            },
-            {
-              "name": "CVE adasd",
-              "description": "desc"
+              "name": "Amazon Echo Session fixation vulnerability in devices",
+              "description": "the reprompt feature in Amazon Echo devices could be misused by a custom Alexa skill. The reprompt feature is designed so that if Alexa does not receive an input within 8 seconds, the device can speak a reprompt, then wait an additional 8 seconds for input; if the user still does not respond, the microphone is then turned off. The vulnerability involves empty output-speech reprompts, custom wildcard (\"gibberish\") input slots, and logging of detected speech. If a maliciously designed skill is installed, an attacker could obtain transcripts of speech not intended for Alexa to process, but simply spoken within the device's hearing range. "
             }
           ]
         }
@@ -51,10 +34,6 @@
             {
               "name": "CVE 232311321",
               "description": "desc"
-            },
-            {
-              "name": "CVE adasd",
-              "description": "desc"
             }
           ]
         },
@@ -63,26 +42,22 @@
           "tag": "Smart Assistant",
            "vulnerability": [
             {
-              "name": "CVE 232311321",
-              "description": "desc"
-            },
-            {
-              "name": "CVE adasd",
-              "description": "desc"
+              "name": "Amazon Echo Show Integer Overflow Remote Code Execution Vulnerability",
+              "description": "This vulnerability allows remote attackers to execute arbitrary code on affected installations of Amazon Echo Show. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file.The specific flaw exists within the handling of arrays. The issue results from the lack of proper validation of user-supplied data, which can result in an integer overflow before allocating a buffer. An attacker can leverage this vulnerability to execute code in the context of the current process."
             }
           ]
         },
           {
-          "model": "Ring Outdoor Camera",
+          "model": "Ring Video Doorbell",
           "tag": "Smart Camera",
           "vulnerability": [
             {
-              "name": "CVE 232311321",
-              "description": "desc"
+              "name": "Unknown vulnerability in Amazon Ring Video Doorbell",
+              "description": "Amazon Ring Video Doorbell is a smart wireless home security doorbell camera that allows users to remotely control their doorbells. Amazon Ring Video Doorbell has a security vulnerability that originates from information shared between the application and the doorbell (including Wi-Fi passwords) transmitted over an unprotected HTTP connection. An attacker could use this vulnerability to obtain a user's Wi-Fi password."
             },
             {
-              "name": "CVE adasd",
-              "description": "desc"
+              "name": "Amazon Ring Doorbell Vulnerabilities related to cryptographic strength",
+              "description": "Amazon Ring Doorbell before 3.4.7 mishandles encryption, which allows attackers to obtain audio and video data, or insert spoofed video that does not correspond to the actual person at the door. Amazon Ring Doorbell Contains a cryptographic strength vulnerability.Information may be obtained and information may be altered"
             }
           ]
         }
@@ -97,10 +72,6 @@
             {
               "name": "CVE 232311321",
               "description": "desc"
-            },
-            {
-              "name": "CVE adasd",
-              "description": "desc"
             }
           ]
         },
@@ -110,10 +81,6 @@
            "vulnerability": [
             {
               "name": "CVE 232311321",
-              "description": "desc"
-            },
-            {
-              "name": "CVE adasd",
               "description": "desc"
             }
           ]
@@ -125,10 +92,6 @@
             {
               "name": "CVE 232311321",
               "description": "desc"
-            },
-            {
-              "name": "CVE adasd",
-              "description": "desc"
             }
           ]
         },
@@ -138,10 +101,6 @@
            "vulnerability": [
             {
               "name": "CVE 232311321",
-              "description": "desc"
-            },
-            {
-              "name": "CVE adasd",
               "description": "desc"
             }
           ]
@@ -157,10 +116,6 @@
             {
               "name": "CVE 232311321",
               "description": "desc"
-            },
-            {
-              "name": "CVE adasd",
-              "description": "desc"
             }
           ]
         },
@@ -170,10 +125,6 @@
            "vulnerability": [
             {
               "name": "CVE 232311321",
-              "description": "desc"
-            },
-            {
-              "name": "CVE adasd",
               "description": "desc"
             }
           ]
@@ -185,10 +136,6 @@
             {
               "name": "CVE 232311321",
               "description": "desc"
-            },
-            {
-              "name": "CVE adasd",
-              "description": "desc"
             }
           ]
         },
@@ -198,10 +145,6 @@
            "vulnerability": [
             {
               "name": "CVE 232311321",
-              "description": "desc"
-            },
-            {
-              "name": "CVE adasd",
               "description": "desc"
             }
           ]

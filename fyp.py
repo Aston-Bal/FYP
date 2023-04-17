@@ -17,7 +17,7 @@ class Area:
 
 
 class Device:
-    def __init__(self, name, tag, vulnerability: list):
+    def __init__(self, name, tag, vulnerability):
         self.name = name
         self.type = tag
         self.vulnerability = vulnerability
@@ -51,20 +51,30 @@ def initialize():
         for vendors in database:
             current_vendor = list(vendors.values())[0]
             for devices in current_vendor:
-                new_device = Device(devices["model"], devices["tag"], devices["vulnerability"])
+                if len(devices) == 3:
+                    new_device = Device(devices["model"], devices["tag"], devices["vulnerability"])
+                else:
+                    new_device = Device(devices["model"], devices["tag"],None)
                 devices_list.append(new_device)
 
 
 def check_vulnerable():
-    for area in buttons_list:
-        for area_devices in area.devices:
-            for devices in devices_list:
-                if area_devices.get() == devices.name:
-                    vulnerabilities_list = devices.vulnerability
-                    for vulnerabilities in vulnerabilities_list:
-                        print(devices.vulnerability)
-
-
+    try:
+        vulnerabilites_list = []
+        for area in buttons_list:
+            for devices_in_area in area.devices:
+                for devices in devices_list:
+                    if devices_in_area.get() == devices.name and devices.vulnerability is not None:
+                        device_vulnerabilities = devices.vulnerability
+                        for vulnerabilities in device_vulnerabilities:
+                            vulnerabilites_list.append(vulnerabilities)
+                            print(vulnerabilities)
+        new_window = tk.Toplevel(window)
+        new_window.title("Report")
+        new_window.geometry("1000x500")
+        tk.Label(new_window, text=vulnerabilites_list).grid()
+    except UnboundLocalError:
+        raise SystemExit("No Devices!")
 
 
 def add_new_area():
