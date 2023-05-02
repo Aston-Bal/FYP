@@ -88,11 +88,14 @@ def check_vulnerable():
             for tags in tags_of_devices:
                 for location in locations:
                     if tags == "Smart Camera" or "Smart Assistant" and location == "Kid's Bedroom":
-                        message = "Devices located in Kid's bedroom, we extremely recommend to limit the device capabilities using parental controls, or removing the device due to safety concerns."
+                        message = "Devices located in Kid's bedroom, we extremely recommend to limit the device " \
+                                  "capabilities using parental controls, or removing the device due to safety concerns."
                         if message not in report:
                             report.append(message)
                     if tags == "Smart Camera" and location == "Bedroom":
-                        message = "Camera's in bedrooms are target's for attackers, typically for blackmail, we recommend removing the device, or oriented it in way that only shows Entry/Exit doors"
+                        message = "Camera's in bedrooms are target's for attackers, typically for blackmail, " \
+                                  "we recommend removing the device, or oriented it in way that only shows Entry/Exit" \
+                                  " doors"
                         if message not in report:
                             report.append(message)
             new_window = tk.Toplevel(window)

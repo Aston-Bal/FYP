@@ -48,16 +48,16 @@
           ]
         },
           {
-          "model": "Ring Video Doorbell",
+          "model": "Ring Video Camera",
           "tag": "Smart Camera",
           "vulnerability": [
             {
-              "name": "Unknown vulnerability in Amazon Ring Video Doorbell",
-              "description": "Amazon Ring Video Doorbell is a smart wireless home security doorbell camera that allows users to remotely control their doorbells. Amazon Ring Video Doorbell has a security vulnerability that originates from information shared between the application and the doorbell (including Wi-Fi passwords) transmitted over an unprotected HTTP connection. An attacker could use this vulnerability to obtain a user's Wi-Fi password."
+              "name": "Unknown vulnerability in Amazon Ring Video Camera",
+              "description": "Amazon Ring Video Camera is a smart wireless home security doorbell camera that allows users to remotely control their doorbells. Amazon Ring Video Camera has a security vulnerability that originates from information shared between the application and the doorbell (including Wi-Fi passwords) transmitted over an unprotected HTTP connection. An attacker could use this vulnerability to obtain a user's Wi-Fi password."
             },
             {
-              "name": "Amazon Ring Doorbell Vulnerabilities related to cryptographic strength",
-              "description": "Amazon Ring Doorbell before 3.4.7 mishandles encryption, which allows attackers to obtain audio and video data, or insert spoofed video that does not correspond to the actual person at the door. Amazon Ring Doorbell Contains a cryptographic strength vulnerability.Information may be obtained and information may be altered"
+              "name": "Amazon Ring Camera Vulnerabilities related to cryptographic strength",
+              "description": "Amazon Ring Camera before 3.4.7 mishandles encryption, which allows attackers to obtain audio and video data, or insert spoofed video that does not correspond to the actual person at the door. Amazon Ring Camera Contains a cryptographic strength vulnerability.Information may be obtained and information may be altered"
             }
           ]
         }
