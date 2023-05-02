@@ -81,19 +81,20 @@ def check_vulnerable():
                         if str(devices_in_area.get()) == str(devices.name) and devices.vulnerability is not None:
                             device_vulnerabilities = devices.vulnerability
                             for vulnerabilities in device_vulnerabilities:
-                                vulnerabilities_list.append(vulnerabilities)
+                                if vulnerabilities not in vulnerabilities_list:
+                                    vulnerabilities_list.append(vulnerabilities)
                         if devices_in_area.get() == devices.name:
                             tags_of_devices.append(devices.tag)
             for tags in tags_of_devices:
                 for location in locations:
                     if tags == "Smart Camera" or "Smart Assistant" and location == "Kid's Bedroom":
-                        report.append("Devices located in Kid's bedroom, we extremely recommend to limit the device "
-                                      "capabilities using parental controls, or removing the device due to safety "
-                                      "concerns.")
+                        message = "Devices located in Kid's bedroom, we extremely recommend to limit the device capabilities using parental controls, or removing the device due to safety concerns."
+                        if message not in report:
+                            report.append(message)
                     if tags == "Smart Camera" and location == "Bedroom":
-                        report.append("Camera's in bedrooms are target's for attackers, typically for blackmail, "
-                                      "we recommend removing the device, or oriented it in way that only shows "
-                                      "Entry/Exit doo")
+                        message = "Camera's in bedrooms are target's for attackers, typically for blackmail, we recommend removing the device, or oriented it in way that only shows Entry/Exit doors"
+                        if message not in report:
+                            report.append(message)
             new_window = tk.Toplevel(window)
             new_window.title("Report")
             new_window.geometry("1000x500")
