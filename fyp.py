@@ -19,16 +19,26 @@ class Area:
 class Device:
     def __init__(self, name, tag, vulnerability):
         self.name = name
-        self.type = tag
+        self.tag = tag
         self.vulnerability = vulnerability
 
     def __str__(self):
         return self.name
 
 
+class Organisation:
+
+    def __init__(self, name, devices):
+        self.name = name
+        self.devices = devices
+
+
 number_of_buttons: int = 0
 buttons_list = []
 devices_list = []
+locations = ["Kitchen", "Living Room", "Entrance  Hall", "Dining Room", "Bedroom", "Guest Room", "Kid's Bedroom",
+             "Office",
+             "Loft (Attic)", "Basement", "Garage"]
 global database
 
 
@@ -49,41 +59,64 @@ def initialize():
         database = json.load(file)
         database = database["vendors"]
         for vendors in database:
-            current_vendor = list(vendors.values())[0]
+            current_vendor = list(vendors.values())[0]  # Increment into the actual vendor
             for devices in current_vendor:
-                if len(devices) == 3:
+                if len(devices) == 3:  # Database has 3 values when if the device is vulnerable
                     new_device = Device(devices["model"], devices["tag"], devices["vulnerability"])
                 else:
-                    new_device = Device(devices["model"], devices["tag"],None)
+                    new_device = Device(devices["model"], devices["tag"], None)
                 devices_list.append(new_device)
 
 
 def check_vulnerable():
-    try:
-        vulnerabilites_list = []
-        for area in buttons_list:
-            for devices_in_area in area.devices:
-                for devices in devices_list:
-                    if devices_in_area.get() == devices.name and devices.vulnerability is not None:
-                        device_vulnerabilities = devices.vulnerability
-                        for vulnerabilities in device_vulnerabilities:
-                            vulnerabilites_list.append(vulnerabilities)
-                            print(vulnerabilities)
-        new_window = tk.Toplevel(window)
-        new_window.title("Report")
-        new_window.geometry("1000x500")
-        tk.Label(new_window, text=vulnerabilites_list).grid()
-    except UnboundLocalError:
-        raise SystemExit("No Devices!")
+    if buttons_list:
+        if buttons_list[0].devices:
+            vulnerabilities_list: list = []
+            tags_of_devices: list = []
+            report: list = ["We will always recommend to update your devices, as this can easily prevent countless "
+                            "vulnerabilities"]
+            for areas in buttons_list:
+                for devices_in_area in areas.devices:
+                    for devices in devices_list:
+                        if str(devices_in_area.get()) == str(devices.name) and devices.vulnerability is not None:
+                            device_vulnerabilities = devices.vulnerability
+                            for vulnerabilities in device_vulnerabilities:
+                                vulnerabilities_list.append(vulnerabilities)
+                        if devices_in_area.get() == devices.name:
+                            tags_of_devices.append(devices.tag)
+            for tags in tags_of_devices:
+                for location in locations:
+                    if tags == "Smart Camera" or "Smart Assistant" and location == "Kid's Bedroom":
+                        report.append("Devices located in Kid's bedroom, we extremely recommend to limit the device "
+                                      "capabilities using parental controls, or removing the device due to safety "
+                                      "concerns.")
+                    if tags == "Smart Camera" and location == "Bedroom":
+                        report.append("Camera's in bedrooms are target's for attackers, typically for blackmail, "
+                                      "we recommend removing the device, or oriented it in way that only shows "
+                                      "Entry/Exit doo")
+            new_window = tk.Toplevel(window)
+            new_window.title("Report")
+            new_window.geometry("1000x500")
+            if vulnerabilities_list:
+                tk.Label(new_window, text="Vulnerabilities: ", wraplength=500, justify="left").pack()
+            for vulnerabilities in vulnerabilities_list:
+                tk.Label(new_window, text=("Name: " + vulnerabilities["name"]), wraplength=500, justify="left").pack()
+                tk.Label(new_window, text=("Description: \n" + vulnerabilities["description"]), wraplength=500,
+                         justify="left").pack()
+            tk.Label(new_window, text="Report: ", wraplength=500,
+                     justify="left").pack()
+            for items in report:
+                tk.Label(new_window, text=items, wraplength=500,
+                         justify="left").pack()
 
 
 def add_new_area():
     area = tk.StringVar(window)
-    area.set(location[0])  # Required to set default value
-    area_optionmenu = tk.OptionMenu(window, area, *location)
+    area.set(locations[0])  # Required to set default value
+    area_menu = tk.OptionMenu(window, area, *locations)
     current_grid_size = window.grid_size()
     tk.Label(window, text="Input area: ").grid(row=current_grid_size[1], column=0, padx=5, pady=5)
-    area_optionmenu.grid(row=current_grid_size[1], column=1, padx=5, pady=5)
+    area_menu.grid(row=current_grid_size[1], column=1, padx=5, pady=5)
     global number_of_buttons
     area = Area(number_of_buttons, area, 0)
     buttons_list.append(area)
@@ -124,10 +157,8 @@ window = tk.Tk()
 toolbar()
 window.geometry("1000x500")
 window.title("IoT vulnerability scanner")
-# state where devices is placed
-location = ["Kitchen", "Living Room", "Entrance  Hall", "Dining Room", "Bedroom", "Guest Room", "Kid's Room", "Office",
-            "Loft (Attic)", "Basement", "Garage"]
 
+# main buttons
 calculate_vulnerability = tk.Button(window, text="Check vulnerable", command=lambda: check_vulnerable(), width=30)
 temp_button = tk.Button(window, text="Add new area", command=lambda: add_new_area(), width=30)
 temp_button.grid(row=0, column=0, columnspan=5, padx=5, pady=5)
